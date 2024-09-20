@@ -11,6 +11,8 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
   const [applied, setApplied] = useState([]);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
+
   const CloseIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,12 +33,12 @@ const Profile = () => {
   const getPosts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/user-info/${user.email}`
+        `${back}/user-info/${user.email}`
       );
       setUser(response.data);
 
       const promises = user.jobsPosted.map((id) =>
-        axios.get(`http://localhost:8080/post/${id}`)
+        axios.get(`${back}/post/${id}`)
       );
       const responses = await Promise.all(promises);
 
@@ -49,12 +51,12 @@ const Profile = () => {
   const getApplies = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/user-info/${user.email}`
+        `${back}/user-info/${user.email}`
       );
       user = response.data;
 
       const promises = user.jobsApplied.map((id) =>
-        axios.get(`http://localhost:8080/post/${id}`)
+        axios.get(`${back}/post/${id}`)
       );
       const responses = await Promise.all(promises);
 
@@ -76,7 +78,7 @@ const Profile = () => {
     if (confirmLogout) {
       try {
         const resp = await axios.put(
-          `http://localhost:8080/sign-out/${user.email}`
+          `${back}/sign-out/${user.email}`
         );
 
         if (resp.status === 200) {

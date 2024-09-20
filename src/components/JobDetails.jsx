@@ -8,6 +8,8 @@ const JobDetails = () => {
 
   const { user, setUser } = useContext(UserContext);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
+
   const { id } = useParams();
 
   const [isPoster, setIsPoster] = useState(false);
@@ -22,7 +24,7 @@ const JobDetails = () => {
     if (confirm) {
       try {
         const resp = await axios.delete(
-          `http://localhost:8080/post/delete/${id}/${user.id}`
+          `${back}/post/delete/${id}/${user.id}`
         );
 
         if (resp.status === 200) {
@@ -41,7 +43,7 @@ const JobDetails = () => {
 
     try {
       const resp = await axios.put(
-        `http://localhost:8080/${user.id}/post/${id}/apply`
+        `${back}/${user.id}/post/${id}/apply`
       );
 
       if (resp.status === 200) {
@@ -57,7 +59,7 @@ const JobDetails = () => {
   useEffect(() => {
     const getDetails = async () => {
       try {
-        const resp = await axios.get(`http://localhost:8080/post/${id}`);
+        const resp = await axios.get(`${back}/post/${id}`);
 
         if (resp.status === 200) {
           setPost(resp.data);

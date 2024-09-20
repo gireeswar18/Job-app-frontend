@@ -14,6 +14,7 @@ const Signup = () => {
 
   const {setUser} = useContext(UserContext);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
 
   const handleSubmit = async (e) => {
 
@@ -36,7 +37,7 @@ const Signup = () => {
 
     try {
       
-      const resp = await axios.post("http://localhost:8080/sign-up", {
+      const resp = await axios.post(`${back}/sign-up`, {
         username: username,
         email: email,
         password: password

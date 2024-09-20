@@ -7,6 +7,8 @@ const PostsList = () => {
 
   const {user} = useContext(UserContext);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
+
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -14,7 +16,7 @@ const PostsList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/all-posts");
+        const response = await axios.get(`${back}/all-posts`);
         setPosts(response.data);
       } catch (err) {
         setError("Currently no jobs available. Please try again later.");

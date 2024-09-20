@@ -7,6 +7,8 @@ const PostingPage = () => {
 
   const {user} = useContext(UserContext);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
+
   const navigate = useNavigate();
 
   let [thisUser, setThisUser] = useState({
@@ -75,7 +77,7 @@ const PostingPage = () => {
     e.preventDefault();
 
     try {
-      const resp = await axios.post(`http://localhost:8080/post/user/${thisUser.id}`, {
+      const resp = await axios.post(`${back}/post/user/${thisUser.id}`, {
         jobTitle: jobTitle,
         desc: desc,
         exp: exp,

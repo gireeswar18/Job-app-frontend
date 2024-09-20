@@ -8,10 +8,12 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState([]);
 
+  const back = "https://job-app-backend-jp7h.onrender.com";
+
   const searchP = async () => {
     try {
       const resp = await axios.get(
-        `http://localhost:8080/post/search/${search}`
+        `${back}/post/search/${search}`
       );
 
       if (resp.status === 200) setPosts(resp.data);
